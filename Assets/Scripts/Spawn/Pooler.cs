@@ -30,7 +30,7 @@ namespace Modules.Spawn
             {
                 _returnedObjects.Remove(validObjects[0]);
 
-                validObjects[0].Init();
+                validObjects[0].Spawn();
 
                 return validObjects[0];
             }
@@ -46,7 +46,7 @@ namespace Modules.Spawn
             if (!_returnedObjects.Contains(obj))
             {
                 _returnedObjects.Add(obj);
-                obj.ReturnToDefault();
+                obj.Despawn();
             }
 
             obj.Dispose();
@@ -59,7 +59,7 @@ namespace Modules.Spawn
                 if (!_returnedObjects.Contains(obj))
                 {
                     _returnedObjects.Add(obj);
-                    obj.ReturnToDefault();
+                    obj.Despawn();
                 }
             }
         }

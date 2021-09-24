@@ -4,26 +4,41 @@ using Modules.Spawn;
 
 namespace Environment
 {
-    public class Item : MonoBehaviour, ISpawnable
+    public class Item : SpawnableObject, ICollectableObject
     {
         [SerializeField]
         private ItemTypes _type;
 
+        [SerializeField]
+        private Rigidbody _body;
+
+        [SerializeField]
+        private Collider _collider;
+
         public ItemTypes Type => _type;
 
-        public void Init()
-        {
-            gameObject.SetActive(true);
-        }
-
-        public void ReturnToDefault()
+        public override void Despawn()
         {
             gameObject.SetActive(false);
+
+            Release();
         }
 
-        public void Dispose()
+        public void Collect()
         {
-            Destroy(gameObject);
+            SwitchRigidbody(true);
+        }
+
+        public void Release()
+        {
+            SwitchRigidbody(false);
+        }
+
+        private void SwitchRigidbody(bool enabled)
+        {
+            _body.isKinematic = enabled;
+            _body.detectCollisions = !enabled;
+            _collider.enabled = !enabled;
         }
     }
 }

@@ -4,7 +4,7 @@ namespace Modules.Spawn
 {
     public interface ISpawnable : IDisposable
     {
-        void Init();
-        void ReturnToDefault();
+        void Spawn();
+        void Despawn();
     }
 }
