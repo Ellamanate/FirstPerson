@@ -2,7 +2,7 @@
 
 using UnityEngine;
 
-using Environment;
+using MainGame.Environment;
 
 namespace Modules.Spawn
 {

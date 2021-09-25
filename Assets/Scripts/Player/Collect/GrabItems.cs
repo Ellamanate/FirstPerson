@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 
-using Player.Input;
-using Player.Sensors;
-using Environment;
+using MainGame.PlayerModule.Input;
+using MainGame.PlayerModule.Sensors;
+using MainGame.Environment;
 
-namespace Player.TransportItems
+namespace MainGame.PlayerModule.TransportItems
 {
     public class GrabItems : MonoBehaviour
     {
@@ -28,6 +28,11 @@ namespace Player.TransportItems
         private void OnDisable()
         {
             _inputSystem.OnAction -= Action;
+        }
+
+        public void Drop()
+        {
+            _container.Release();
         }
 
         private void Action()
@@ -64,11 +69,6 @@ namespace Player.TransportItems
             {
                 Drop();
             }
-        }
-
-        private void Drop()
-        {
-            _container.Release();
         }
     }
 }

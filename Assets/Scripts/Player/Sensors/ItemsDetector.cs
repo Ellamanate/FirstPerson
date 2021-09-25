@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 
-using Environment;
+using MainGame.Environment;
 
-namespace Player.Sensors
+namespace MainGame.PlayerModule.Sensors
 {
     public class ItemsDetector : TriggerDetector<Item>
     {

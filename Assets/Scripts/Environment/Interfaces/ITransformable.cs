@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Environment
+namespace MainGame.Environment
 {
     public interface ITransformable
     {

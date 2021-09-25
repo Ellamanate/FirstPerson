@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 
-using Environment;
+using MainGame.Environment;
 
-namespace Player.TransportItems
+namespace MainGame.PlayerModule.TransportItems
 {
     public class BaseContainer<T> : MonoBehaviour where T : Object, ICollectableObject
     {
@@ -22,7 +22,7 @@ namespace Player.TransportItems
         {
             OnRelease();
 
-            HeldObject.Release();
+            HeldObject?.Release();
             HeldObject = null;
         }
 

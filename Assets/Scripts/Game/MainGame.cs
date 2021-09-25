@@ -1,24 +1,23 @@
 ﻿using UnityEngine;
 
-using Modules.Spawn;
+using MainGame.PlayerModule;
 
 namespace MainGame
 {
     public class MainGame : MonoBehaviour
     {
         [SerializeField]
-        private ItemsSpawner _spawner;
+        private StorageCollectionCounter _counter;
 
         [SerializeField]
-        private StorageCounter _counter;
+        private GameEnder _ender;
 
         [SerializeField]
+        private Player _playerPrefab;
+
         private int _itemsNumber;
 
-        private void Awake()
-        {
-            Application.targetFrameRate = 120;
-        }
+        public Player Player { get; private set; }
 
         private void OnEnable()
         {
@@ -30,20 +29,18 @@ namespace MainGame
             _counter.OnStore -= Store;
         }
 
-        private void Start()
+        public void Init(int itemsNumber)
         {
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
+            Player ??= Instantiate(_playerPrefab);
 
-            _spawner.Spawn(_itemsNumber);
+            _itemsNumber = itemsNumber;
         }
 
         private void Store()
         {
-            if (_counter.Counter >= _itemsNumber)
+            if (_counter.ItemsNumber >= _itemsNumber)
             {
-                _counter.ResetToDefault();
-                _spawner.Spawn(_itemsNumber);
+                _ender.EndGame();
             }
         }
     }

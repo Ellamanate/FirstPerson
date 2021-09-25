@@ -3,7 +3,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace Player.Input
+namespace MainGame.PlayerModule.Input
 {
     public class PlayerInput : MonoBehaviour
     {
@@ -20,14 +20,14 @@ namespace Player.Input
             _inputActions.Player.Action.performed += Action;
         }
 
-        private void OnEnable()
+        public void Enable()
         {
-            _inputActions.Enable();
+            _inputActions?.Enable();
         }
 
-        private void OnDisable()
+        public void Disable()
         {
-            _inputActions.Disable();
+            _inputActions?.Disable();
         }
 
         private void Action(InputAction.CallbackContext context)

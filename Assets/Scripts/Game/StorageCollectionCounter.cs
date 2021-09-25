@@ -1,19 +1,20 @@
 ﻿using System;
+using System.Collections.Generic;
 
 using UnityEngine;
 
-using Environment;
+using MainGame.Environment;
 
 namespace MainGame
 {
-    public class StorageCounter : MonoBehaviour
+    public class StorageCollectionCounter : MonoBehaviour
     {
         public event Action OnStore;
 
         [SerializeField]
         private ItemsStorage[] _storages;
 
-        public int Counter { get; private set; }
+        public int ItemsNumber { get; private set; }
 
         private void OnEnable()
         {
@@ -31,14 +32,24 @@ namespace MainGame
             }
         }
 
+        public IReadOnlyCollection<ItemsStorage> GetStorages()
+        {
+            return Array.AsReadOnly(_storages);
+        }
+
         public void ResetToDefault()
         {
-            Counter = 0;
+            ItemsNumber = 0;
+
+            foreach (var storage in _storages)
+            {
+                storage.ReturnToDefault();
+            }
         }
 
         private void UpCounter()
         {
-            Counter++;
+            ItemsNumber++;
 
             OnStore?.Invoke();
         }

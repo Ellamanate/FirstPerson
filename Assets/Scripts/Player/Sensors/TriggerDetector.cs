@@ -2,7 +2,7 @@
 
 using UnityEngine;
 
-namespace Player.Sensors
+namespace MainGame.PlayerModule.Sensors
 {
     public class TriggerDetector<T> : MonoBehaviour
     {

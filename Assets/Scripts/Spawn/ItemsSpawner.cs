@@ -3,7 +3,8 @@
 using UnityEngine;
 
 using Extensions.Transform;
-using Environment;
+
+using MainGame.Environment;
 
 namespace Modules.Spawn
 {

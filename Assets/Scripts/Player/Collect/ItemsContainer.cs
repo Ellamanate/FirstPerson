@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
 
-using Environment;
+using MainGame.Environment;
+
 using Extensions.Transform;
 
-namespace Player.TransportItems
+namespace MainGame.PlayerModule.TransportItems
 {
     public class ItemsContainer : BaseContainer<Item>
     {

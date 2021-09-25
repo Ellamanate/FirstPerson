@@ -2,7 +2,7 @@
 
 using Modules.Spawn;
 
-namespace Environment
+namespace MainGame.Environment
 {
     public class Item : SpawnableObject, ICollectableObject
     {

@@ -1,4 +1,4 @@
-﻿namespace Environment
+﻿namespace MainGame.Environment
 {
     public enum ItemTypes
     {

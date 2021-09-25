@@ -1,13 +1,14 @@
 using UnityEngine;
 
-using Player.Input;
-using Player.TransportItems;
-using Environment;
+using MainGame.PlayerModule.Input;
+using MainGame.PlayerModule.TransportItems;
+using MainGame.Environment;
+
 using Extensions.Transform;
 
-namespace Player.Movement
+namespace MainGame.PlayerModule.Movement
 {
-    public class Movement : MonoBehaviour
+    public class PlayerMovement : MonoBehaviour
     {
         private const float MaxAngle = 89;
 
@@ -21,28 +22,21 @@ namespace Player.Movement
         private BaseContainer<Item> _container;
 
         [SerializeField]
-        private Transform _camera;
-
-        [SerializeField]
         private float _moveSpeed;
 
         [SerializeField]
         private float _rotateSpeed;
 
+        public Vector3 Forward { get; private set; }
+
         private Vector3 _gravity = new Vector3(0, -1, 0);
         private Vector2 _rotation;
-        private Vector3 _forward;
 
         private void Update()
         {
             Look(_inputSystem.LookDirection);
-        }
-
-        private void LateUpdate()
-        {
             Move(_inputSystem.MoveDirection);
-            _container.UpdatePosition(transform.position, _forward.ChangeY(0).normalized);
-            _camera.rotation = Quaternion.LookRotation(_forward, Vector3.up);
+            _container.UpdatePosition(transform.position, Forward.ChangeY(0).normalized);
         }
 
         private void Look(Vector2 rotate)
@@ -50,7 +44,7 @@ namespace Player.Movement
             var scaledRotateSpeed = _rotateSpeed * Time.deltaTime;
             _rotation.y += rotate.x * scaledRotateSpeed;
             _rotation.x = Mathf.Clamp(_rotation.x - rotate.y * scaledRotateSpeed, -MaxAngle, MaxAngle);
-            _forward = Quaternion.Euler(_rotation) * Vector3.forward;
+            Forward = Quaternion.Euler(_rotation) * Vector3.forward;
         }
 
         private void Move(Vector2 direction)
