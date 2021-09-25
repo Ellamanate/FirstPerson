@@ -12,10 +12,13 @@ namespace Player.TransportItems
         private PlayerInput _inputSystem;
 
         [SerializeField]
-        private ItemsDetector _detector;
+        private ItemsDetector _itemsDetector;
 
         [SerializeField]
-        private GrabContainer _container;
+        private StorageDetector _storageDetector;
+
+        [SerializeField]
+        private BaseContainer<Item> _container;
 
         private void OnEnable()
         {
@@ -29,9 +32,13 @@ namespace Player.TransportItems
 
         private void Action()
         {
-            if (_container.HeldItem == null) 
+            if (_container.HeldObject == null) 
             {
                 Grab();
+            }
+            else if (_storageDetector.TryGetStorage(out ItemsStorage storage))
+            {
+                PutInStorage(storage);
             }
             else
             {
@@ -41,9 +48,21 @@ namespace Player.TransportItems
 
         private void Grab()
         {
-            if (_detector.TryGetNeraest(out Item item))
+            if (_itemsDetector.TryGetNeraest(out Item item))
             {
                 _container.SetItem(item);
+            }
+        }
+
+        private void PutInStorage(ItemsStorage storage)
+        {
+            if (storage.TryCollectItem(_container.HeldObject))
+            {
+                _container.Release();
+            }
+            else
+            {
+                Drop();
             }
         }
 

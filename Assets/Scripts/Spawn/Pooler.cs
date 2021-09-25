@@ -38,27 +38,12 @@ namespace Modules.Spawn
             return CreateNewObject(id);
         }
 
-        public void Return(T1 obj)
-        {
-            if (obj == null)
-                return;
-
-            if (!_returnedObjects.Contains(obj))
-            {
-                _returnedObjects.Add(obj);
-                obj.Despawn();
-            }
-
-            obj.Dispose();
-        }
-
         public void ReturnAll()
         {
             foreach (var obj in _identifires.Select(x => x.Object))
             {
                 if (!_returnedObjects.Contains(obj))
                 {
-                    _returnedObjects.Add(obj);
                     obj.Despawn();
                 }
             }
@@ -84,9 +69,16 @@ namespace Modules.Spawn
         {
             var item = _factory.Create(id);
 
+            item.OnDespawn += Return;
+
             _identifires.Add(new Identifier<T1, T2>(item, id));
 
             return item;
+        }
+
+        private void Return(ISpawnable obj)
+        {
+            _returnedObjects.Add((T1)obj);
         }
     }
 }

@@ -1,9 +1,13 @@
-﻿using UnityEngine;
+﻿using System;
+
+using UnityEngine;
 
 namespace Modules.Spawn
 {
     public class SpawnableObject : MonoBehaviour, ISpawnable
     {
+        public event Action<ISpawnable> OnDespawn;
+
         public virtual void Spawn()
         {
             gameObject.SetActive(true);
@@ -11,6 +15,8 @@ namespace Modules.Spawn
 
         public virtual void Despawn()
         {
+            OnDespawn?.Invoke(this);
+
             gameObject.SetActive(false);
         }
 
