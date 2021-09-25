@@ -20,7 +20,10 @@ namespace MainGame
             Application.targetFrameRate = 120;
 
             _mainGame.Init(_itemsNumber);
+        }
 
+        private void Start()
+        {
             StartGame();
         }
 

@@ -2,10 +2,9 @@
 
 namespace Modules.Spawn
 {
-    public interface ISpawnable : IDisposable
+    public interface ISpawnable : IDisposableObject<ISpawnable>
     {
         event Action<ISpawnable> OnDespawn;
-        void Spawn();
         void Despawn();
     }
 }

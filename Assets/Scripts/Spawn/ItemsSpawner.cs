@@ -19,11 +19,14 @@ namespace Modules.Spawn
         [SerializeField]
         private Transform _parent;
 
+        [SerializeField]
+        private Transform _pool;
+
         private IPooler<Item, ItemTypes> _pooler;
 
         private void Awake()
         {
-            _pooler = new Pooler<Item, ItemTypes>(_factory);
+            _pooler = new DefaultPooler<Item, ItemTypes>(_factory, _parent, _pool);
         }
 
         public void Spawn(int number)

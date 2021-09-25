@@ -29,8 +29,6 @@ namespace MainGame.Environment
 
         protected override void WhenDespawn()
         {
-            gameObject.SetActive(false);
-
             Release();
         }
 

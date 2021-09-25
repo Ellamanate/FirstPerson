@@ -7,11 +7,7 @@ namespace Modules.Spawn
     public class SpawnableObject : MonoBehaviour, ISpawnable
     {
         public event Action<ISpawnable> OnDespawn;
-
-        public virtual void Spawn()
-        {
-            gameObject.SetActive(true);
-        }
+        public event Action<ISpawnable> OnDispose;
 
         public void Despawn()
         {
@@ -22,12 +18,11 @@ namespace Modules.Spawn
 
         public virtual void Dispose()
         {
+            OnDispose?.Invoke(this);
+
             Destroy(gameObject);
         }
 
-        protected virtual void WhenDespawn() 
-        {
-            gameObject.SetActive(false);
-        }
+        protected virtual void WhenDespawn() { }
     }
 }
