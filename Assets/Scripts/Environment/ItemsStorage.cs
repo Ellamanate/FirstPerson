@@ -25,6 +25,11 @@ namespace MainGame.Environment
 
         public bool TryCollectItem(Item item)
         {
+            if (item == null)
+            {
+                return false;
+            }
+
             if (item.Type == _type)
             {
                 item.Despawn();

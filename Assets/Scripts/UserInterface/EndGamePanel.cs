@@ -17,6 +17,8 @@ namespace MainGame.UserInterface
         [SerializeField]
         private CounterUI _counterPrefab;
 
+        private List<CounterUI> _counters = new List<CounterUI>();
+
         public void Show(IReadOnlyCollection<ItemsStorage> storages)
         {
             Cursor.lockState = CursorLockMode.Confined;
@@ -28,7 +30,21 @@ namespace MainGame.UserInterface
             {
                 var counterUI = Instantiate(_counterPrefab, _parent);
                 counterUI.SetStorageData(storage.Visualizer.UIVisualization, storage.ItemsNumber);
+
+                _counters.Add(counterUI);
             }
+        }
+
+        public void Hide()
+        {
+            _panel.SetActive(false);
+
+            foreach (var counter in _counters)
+            {
+                Destroy(counter.gameObject);
+            }
+
+            _counters.Clear();
         }
     }
 }

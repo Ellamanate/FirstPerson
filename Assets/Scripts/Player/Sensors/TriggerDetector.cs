@@ -2,16 +2,21 @@
 
 using UnityEngine;
 
+using Utils;
+
 namespace MainGame.PlayerModule.Sensors
 {
     public class TriggerDetector<T> : MonoBehaviour
     {
-        [SerializeField] protected List<T> AvailableObjects = new List<T>();
+        [SerializeField] 
+        protected List<T> AvailableObjects = new List<T>();
 
         private void OnTriggerEnter(Collider other)
         {
             if (other.TryGetComponent(out T obj) && !AvailableObjects.Contains(obj))
             {
+                ReliableOnTriggerExit.NotifyTriggerEnter(other, gameObject, OnTriggerExit);
+
                 AvailableObjects.Add(obj);
 
                 OnAvailableEnter(obj);
@@ -22,6 +27,8 @@ namespace MainGame.PlayerModule.Sensors
         {
             if (other.TryGetComponent(out T obj))
             {
+                ReliableOnTriggerExit.NotifyTriggerExit(other, gameObject);
+
                 AvailableObjects.Remove(obj);
 
                 OnAvailableExit(obj);

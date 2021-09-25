@@ -11,6 +11,7 @@ namespace MainGame.PlayerModule.Sensors
             if (AvailableObjects.Count == 0)
             {
                 nearest = null;
+
                 return false;
             }
 

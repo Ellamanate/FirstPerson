@@ -19,9 +19,6 @@ namespace MainGame
         {
             Application.targetFrameRate = 120;
 
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
-
             _mainGame.Init(_itemsNumber);
 
             StartGame();
@@ -29,6 +26,9 @@ namespace MainGame
 
         public void StartGame()
         {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+
             _spawner.Spawn(_itemsNumber);
 
             _mainGame.Player.Enable();
