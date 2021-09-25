@@ -17,13 +17,6 @@ namespace Environment
 
         public ItemTypes Type => _type;
 
-        public override void Despawn()
-        {
-            gameObject.SetActive(false);
-
-            Release();
-        }
-
         public void Collect()
         {
             SwitchRigidbody(true);
@@ -32,6 +25,13 @@ namespace Environment
         public void Release()
         {
             SwitchRigidbody(false);
+        }
+
+        protected override void WhenDespawn()
+        {
+            gameObject.SetActive(false);
+
+            Release();
         }
 
         private void SwitchRigidbody(bool enabled)

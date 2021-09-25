@@ -28,11 +28,13 @@ namespace Modules.Spawn
 
             if (validObjects.Length != 0)
             {
-                _returnedObjects.Remove(validObjects[0]);
+                var obj = validObjects[0];
 
-                validObjects[0].Spawn();
+                _returnedObjects.Remove(obj);
 
-                return validObjects[0];
+                obj.Spawn();
+
+                return obj;
             }
 
             return CreateNewObject(id);
@@ -45,6 +47,7 @@ namespace Modules.Spawn
                 if (!_returnedObjects.Contains(obj))
                 {
                     obj.Despawn();
+                    obj.OnDespawn -= Return;
                 }
             }
         }
@@ -67,13 +70,13 @@ namespace Modules.Spawn
 
         private T1 CreateNewObject(T2 id)
         {
-            var item = _factory.Create(id);
+            var obj = _factory.Create(id);
 
-            item.OnDespawn += Return;
+            obj.OnDespawn += Return;
 
-            _identifires.Add(new Identifier<T1, T2>(item, id));
+            _identifires.Add(new Identifier<T1, T2>(obj, id));
 
-            return item;
+            return obj;
         }
 
         private void Return(ISpawnable obj)

@@ -13,16 +13,21 @@ namespace Modules.Spawn
             gameObject.SetActive(true);
         }
 
-        public virtual void Despawn()
+        public void Despawn()
         {
             OnDespawn?.Invoke(this);
 
-            gameObject.SetActive(false);
+            WhenDespawn();
         }
 
         public virtual void Dispose()
         {
             Destroy(gameObject);
+        }
+
+        protected virtual void WhenDespawn() 
+        {
+            gameObject.SetActive(false);
         }
     }
 }
