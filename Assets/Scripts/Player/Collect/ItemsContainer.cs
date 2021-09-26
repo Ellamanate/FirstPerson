@@ -14,15 +14,13 @@ namespace MainGame.PlayerModule.TransportItems
         [SerializeField]
         private Vector3 _grabPosition;
 
-        [SerializeField]
-        private float _speed;
-
         public override void UpdatePosition(Vector3 position, Vector3 forward)
         {
             if (HeldObject != null && _controller.enabled)
             {
                 var move = GetGrabPosition(position, forward);
-                _controller.Move((move - transform.position) * _speed * Time.deltaTime);
+                _controller.Move(move - transform.position);
+
                 HeldObject.transform.position = transform.position + _controller.center;
                 HeldObject.transform.rotation = Quaternion.LookRotation(forward, Vector3.up);
             }
@@ -30,8 +28,6 @@ namespace MainGame.PlayerModule.TransportItems
 
         protected override void OnSetItem()
         {
-            HeldObject.transform.localPosition = _controller.center;
-
             _controller.enabled = true;
         }
 

@@ -36,6 +36,7 @@ namespace MainGame.PlayerModule.Movement
         {
             Look(_inputSystem.LookDirection);
             Move(_inputSystem.MoveDirection);
+
             _container.UpdatePosition(transform.position, Forward.ChangeY(0).normalized);
         }
 
@@ -50,7 +51,7 @@ namespace MainGame.PlayerModule.Movement
         private void Move(Vector2 direction)
         {
             var move = Quaternion.Euler(0, _rotation.y, 0) * new Vector3(direction.x, 0, direction.y) + _gravity;
-            _controller.Move(move.normalized * _moveSpeed * Time.deltaTime);
+            _controller.Move(move * _moveSpeed * Time.deltaTime);
         }
     }
 }

@@ -45,8 +45,8 @@ CharacterController:
   serializedVersion: 2
   m_Height: 2
   m_Radius: 0.5
-  m_SlopeLimit: 0
-  m_StepOffset: 0
+  m_SlopeLimit: 45
+  m_StepOffset: 0.2
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0
   m_Center: {x: 0, y: 1, z: 0}
@@ -64,7 +64,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _controller: {fileID: 2090897524842463258}
   _grabPosition: {x: 0.25, y: 0, z: 1.75}
-  _speed: 15
 --- !u!1 &2090897525306521598
 GameObject:
   m_ObjectHideFlags: 0
@@ -160,7 +159,7 @@ CharacterController:
   m_Height: 2
   m_Radius: 0.5
   m_SlopeLimit: 45
-  m_StepOffset: 0.25
+  m_StepOffset: 0.3
   m_SkinWidth: 0.02
   m_MinMoveDistance: 0
   m_Center: {x: 0, y: 1, z: 0}
@@ -177,7 +176,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _input: {fileID: 2090897526287913756}
-  _grabItems: {fileID: 2090897526537317172}
+  _container: {fileID: 2090897524842463259}
 --- !u!114 &2090897526287913756
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -206,7 +205,7 @@ MonoBehaviour:
   _controller: {fileID: 2090897526287913728}
   _container: {fileID: 2090897524842463259}
   _moveSpeed: 7.5
-  _rotateSpeed: 17.5
+  _rotateSpeed: 8
 --- !u!1 &2090897526537317177
 GameObject:
   m_ObjectHideFlags: 0
