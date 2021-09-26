@@ -14,6 +14,11 @@ namespace MainGame.PlayerModule.TransportItems
         [SerializeField]
         private Vector3 _grabPosition;
 
+        private void Awake()
+        {
+            transform.parent = null;
+        }
+
         public override void UpdatePosition(Vector3 position, Vector3 forward)
         {
             if (HeldObject != null && _controller.enabled)
