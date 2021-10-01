@@ -12,7 +12,7 @@ namespace MainGame.PlayerModule.Movement
         [SerializeField]
         private BaseContainer<Item> _container;
 
-        protected override void OnUpdate()
+        protected override void OnLateUpdate()
         {
             _container.UpdatePosition(transform.position, Forward.ChangeY(0).normalized);
         }

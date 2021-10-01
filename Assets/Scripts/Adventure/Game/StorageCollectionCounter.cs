@@ -5,7 +5,7 @@ using UnityEngine;
 
 using MainGame.Environment;
 
-namespace MainGame
+namespace MainGame.Adventure
 {
     public class StorageCollectionCounter : MonoBehaviour
     {

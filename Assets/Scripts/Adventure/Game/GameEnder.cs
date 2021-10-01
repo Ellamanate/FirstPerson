@@ -2,7 +2,7 @@
 
 using MainGame.UserInterface;
 
-namespace MainGame
+namespace MainGame.Adventure
 {
     public class GameEnder : MonoBehaviour
     {

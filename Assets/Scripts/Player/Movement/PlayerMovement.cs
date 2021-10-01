@@ -1,6 +1,9 @@
 using UnityEngine;
 
 using MainGame.PlayerModule.Input;
+using MainGame.PlayerModule.Camera;
+
+using Extensions.Transform;
 
 namespace MainGame.PlayerModule.Movement
 {
@@ -13,6 +16,9 @@ namespace MainGame.PlayerModule.Movement
 
         [SerializeField]
         private CharacterController _controller;
+
+        [SerializeField]
+        private CameraMovement _cameraMovement;
 
         [SerializeField]
         private float _moveSpeed;
@@ -28,12 +34,24 @@ namespace MainGame.PlayerModule.Movement
         private void Update()
         {
             Look(_inputSystem.LookDirection);
-            Move(_inputSystem.MoveDirection);
+
+            transform.rotation = Quaternion.LookRotation(Forward.ChangeY(0).normalized);
+
+            _cameraMovement.LookUpdate(Forward);
 
             OnUpdate();
         }
 
+        private void LateUpdate()
+        {
+            Move(_inputSystem.MoveDirection);
+
+            OnLateUpdate();
+        }
+
         protected virtual void OnUpdate() { }
+
+        protected virtual void OnLateUpdate() { }
 
         private void Look(Vector2 rotate)
         {
@@ -45,7 +63,7 @@ namespace MainGame.PlayerModule.Movement
 
         private void Move(Vector2 direction)
         {
-            var move = Quaternion.Euler(0, _rotation.y, 0) * new Vector3(direction.x, 0, direction.y) + _gravity;
+            var move = _cameraMovement.transform.rotation * new Vector3(direction.x, 0, direction.y) + _gravity;
             _controller.Move(move * _moveSpeed * Time.deltaTime);
         }
     }

@@ -1,25 +1,22 @@
 ﻿using UnityEngine;
 
-using MainGame.PlayerModule.Movement;
-
 namespace MainGame.PlayerModule.Camera
 {
     public class CameraMovement : MonoBehaviour
     {
-        [SerializeField]
-        private PlayerMovement _movement;
-
         private Transform _camera;
 
         private void Awake()
         {
             _camera = UnityEngine.Camera.main.transform;
             _camera.parent = transform;
+            _camera.localPosition = Vector3.zero;
+            _camera.localRotation = Quaternion.identity;
         }
 
-        private void LateUpdate()
+        public void LookUpdate(Vector3 forward)
         {
-            _camera.rotation = Quaternion.LookRotation(_movement.Forward, Vector3.up);
+            transform.rotation = Quaternion.LookRotation(forward, Vector3.up);
         }
     }
 }

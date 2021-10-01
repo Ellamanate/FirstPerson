@@ -2,7 +2,7 @@
 
 using Modules.Spawn;
 
-namespace MainGame
+namespace MainGame.Adventure
 {
     public class GameStarter : MonoBehaviour
     {
@@ -17,7 +17,7 @@ namespace MainGame
 
         private void Awake()
         {
-            Application.targetFrameRate = 120;
+            Application.targetFrameRate = 30;
 
             _mainGame.Init(_itemsNumber);
         }

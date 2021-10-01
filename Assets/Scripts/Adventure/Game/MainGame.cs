@@ -2,7 +2,7 @@
 
 using MainGame.PlayerModule.Input;
 
-namespace MainGame
+namespace MainGame.Adventure
 {
     public class MainGame : MonoBehaviour
     {
