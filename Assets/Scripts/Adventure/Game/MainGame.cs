@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-using MainGame.PlayerModule;
+using MainGame.PlayerModule.Input;
 
 namespace MainGame
 {
@@ -13,11 +13,11 @@ namespace MainGame
         private GameEnder _ender;
 
         [SerializeField]
-        private Player _playerPrefab;
+        private PlayerInput _playerPrefab;
 
         private int _itemsNumber;
 
-        public Player Player { get; private set; }
+        public PlayerInput Player { get; private set; }
 
         private void OnEnable()
         {

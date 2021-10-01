@@ -8,7 +8,6 @@ namespace MainGame.PlayerModule.Sensors
 {
     public class TriggerDetector<T> : MonoBehaviour
     {
-        [SerializeField] 
         protected List<T> AvailableObjects = new List<T>();
 
         private void OnTriggerEnter(Collider other)

@@ -499,7 +499,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _counter: {fileID: 535229873}
   _ender: {fileID: 535229875}
-  _playerPrefab: {fileID: 2090897526287913731, guid: ffe21ac494247504e915fe4f38b592b2, type: 3}
+  _playerPrefab: {fileID: 2090897526287913756, guid: ffe21ac494247504e915fe4f38b592b2, type: 3}
 --- !u!4 &535229872
 Transform:
   m_ObjectHideFlags: 0

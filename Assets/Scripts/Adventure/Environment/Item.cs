@@ -4,7 +4,7 @@ using Modules.Spawn;
 
 namespace MainGame.Environment
 {
-    public class Item : SpawnableObject, ICollectableObject
+    public class Item : SpawnableObject, ICollectable
     {
         [SerializeField]
         private ItemTypes _type;

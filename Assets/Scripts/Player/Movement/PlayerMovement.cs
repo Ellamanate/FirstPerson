@@ -1,10 +1,6 @@
 using UnityEngine;
 
 using MainGame.PlayerModule.Input;
-using MainGame.PlayerModule.TransportItems;
-using MainGame.Environment;
-
-using Extensions.Transform;
 
 namespace MainGame.PlayerModule.Movement
 {
@@ -17,9 +13,6 @@ namespace MainGame.PlayerModule.Movement
 
         [SerializeField]
         private CharacterController _controller;
-
-        [SerializeField]
-        private BaseContainer<Item> _container;
 
         [SerializeField]
         private float _moveSpeed;
@@ -37,8 +30,10 @@ namespace MainGame.PlayerModule.Movement
             Look(_inputSystem.LookDirection);
             Move(_inputSystem.MoveDirection);
 
-            _container.UpdatePosition(transform.position, Forward.ChangeY(0).normalized);
+            OnUpdate();
         }
+
+        protected virtual void OnUpdate() { }
 
         private void Look(Vector2 rotate)
         {

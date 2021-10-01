@@ -4,7 +4,7 @@ using MainGame.Environment;
 
 namespace MainGame.PlayerModule.TransportItems
 {
-    public class BaseContainer<T> : MonoBehaviour where T : Object, ICollectableObject
+    public class BaseContainer<T> : MonoBehaviour where T : Object, ICollectable
     {
         public T HeldObject { get; private set; }
 
