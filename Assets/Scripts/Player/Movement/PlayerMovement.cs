@@ -9,8 +9,6 @@ namespace MainGame.PlayerModule.Movement
 {
     public class PlayerMovement : MonoBehaviour
     {
-        private const float MaxAngle = 89;
-
         [SerializeField]
         private PlayerInput _inputSystem;
 
@@ -19,6 +17,9 @@ namespace MainGame.PlayerModule.Movement
 
         [SerializeField]
         private CameraMovement _cameraMovement;
+
+        [SerializeField, Range(0, 89)]
+        private float MaxAngle = 80;
 
         [SerializeField]
         private float _moveSpeed;
@@ -45,6 +46,8 @@ namespace MainGame.PlayerModule.Movement
         private void LateUpdate()
         {
             Move(_inputSystem.MoveDirection);
+
+            _cameraMovement.PositionUpdate();
 
             OnLateUpdate();
         }

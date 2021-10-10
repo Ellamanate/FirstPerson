@@ -4,6 +4,9 @@ namespace MainGame.PlayerModule.Camera
 {
     public class CameraMovement : MonoBehaviour
     {
+        [SerializeField]
+        private Transform _cameraPivot;
+
         private Transform _camera;
 
         private void Awake()
@@ -17,6 +20,11 @@ namespace MainGame.PlayerModule.Camera
         public void LookUpdate(Vector3 forward)
         {
             transform.rotation = Quaternion.LookRotation(forward, Vector3.up);
+        }
+
+        public void PositionUpdate()
+        {
+            transform.position = _cameraPivot.position;
         }
     }
 }
